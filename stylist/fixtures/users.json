@@ -1,0 +1,23 @@
+[
+{
+    "model": "stylist.myuser",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$24000$cCe651qXBKf1$PlXoVlnltYVoVVxPECehjufns+aDIOeG4SgFaDTBeU4=",
+        "last_login": "2016-05-17T22:34:03.029Z",
+        "is_superuser": false,
+        "username": "Paulina",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2016-05-17T22:33:53.825Z",
+        "city": "Sunnyvale",
+        "woeid": 23424679,
+        "zip_code": 94085,
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

@@ -1,0 +1,28 @@
+<html>
+    <head>
+        {% block head %}
+            <title>iWear</title>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+            <script>
+                function csrf_safe_method(method) {
+                    // these HTTP methods do not require CSRF protection
+                    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+                };
+                $.ajaxSetup({
+                    cache: false,
+                    beforeSend: function(xhr, settings) {
+                       if (!csrf_safe_method(settings.type)) {
+                           xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
+                       }
+                    }
+                });
+            </script>
+        {% endblock head %}
+    </head>
+    <body>
+        {% block content %}
+        {% endblock content %}
+    </body>
+</html>
+

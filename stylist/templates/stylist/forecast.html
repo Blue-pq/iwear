@@ -1,0 +1,26 @@
+{% extends "stylist/base.html" %}
+
+{% block content %}
+What to wear today:
+<script>
+    function callbackFunction(data) {
+        $.ajax({
+            method: "POST",
+            data: {
+                low: data.query.results.channel.item.forecast[0].low,
+                high: data.query.results.channel.item.forecast[0].high
+            }
+        }).done(function(data) {
+            $("#what_to_wear").html(data);
+        });
+    }
+    $(function() {
+        var query = "select * from weather.forecast where woeid={{ woeid }};";
+        $('head:first').append("<script src=\"https://query.yahooapis.com/v1/public/yql?q=" + query + "&format=json&callback=callbackFunction\"><\/script>");
+    })
+</script>
+
+<div id="what_to_wear">
+    Loading...
+</div>
+{% endblock content %}

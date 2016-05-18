@@ -1,0 +1,34 @@
+{% extends "stylist/base.html" %}
+
+{% block content %}
+<form id="signup" action='' method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Sign up">
+</form>
+<script>
+    $("#signup").submit(function(event) {
+        var query = "select woeid from geo.places where text='" + $('#id_zip_code').val() + ",US" + "' and placeTypeName='Zip Code' limit 1";
+        $('head:first').append("<script src=\"https://query.yahooapis.com/v1/public/yql?q=" + query + "&format=json&callback=callbackFunction\"><\/script>");
+        event.preventDefault();
+    });
+</script>
+
+<script>
+    var callbackFunction = function(data) {
+        console.log(data);
+        try {
+            var results = data.query.results;
+            if (results) {
+                var woeid = results.place.woeid;
+                $('#id_woeid').val(woeid);
+                $("#signup").off( "submit" ).submit();
+            } else {
+                alert("Please correct Zip code and try again.");
+            }
+        } catch(e) {
+            alert("Problem communicating with the server. Try again later.");
+        }
+    };
+</script>
+{% endblock content %}
