@@ -12,7 +12,7 @@ class SignUpView(CreateView):
 
     form_class = MyUserCreationForm
     template_name = 'stylist/signup.html'
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('stylist:login')
 
 
 class MyItems(ListView):
@@ -30,7 +30,7 @@ class AddItem(CreateView):
     """Add item to logged user's wardrobe."""
 
     model = Item
-    success_url = reverse_lazy('my_items')
+    success_url = reverse_lazy('stylist:my_items')
     fields = ['item_type', 'color', 'temperature']
 
     def form_valid(self, form):
@@ -42,7 +42,7 @@ class RemoveItem(DeleteView):
     """Remove item from logged user's wardrobe."""
 
     model = Item
-    success_url = reverse_lazy('my_items')
+    success_url = reverse_lazy('stylist:my_items')
 
     def get_queryset(self):
         return super(RemoveItem, self).get_queryset().filter(

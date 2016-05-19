@@ -5,11 +5,11 @@
 <ul>
     {% for item in object_list %}
     <li>{{ item }} - {{ item.description }}
-        [<a href="{% url 'remove_item' item.pk %}">Remove</a>]
+        [<a href="{% url 'stylist:remove_item' item.pk %}">Remove</a>]
     </li>
     {% empty %}
         You have no clothes added yet.
     {% endfor %}
 </ul>
-<a href="{% url 'add_item' %}">Add item</a>
+<a href="{% url 'stylist:add_item' %}">Add item</a>
 {% endblock content %}
