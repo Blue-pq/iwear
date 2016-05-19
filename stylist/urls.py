@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^signup/$', SignUpView.as_view(), name='signup'),
     url(r'^my_items/$', login_required(MyItems.as_view()), name='my_items'),
     url(r'^add_item/$', login_required(AddItem.as_view()), name='add_item'),
-    url(r'^remove_item/(?P<pk>[0-9]+)/$', login_required(RemoveItem.as_view()), name='remove_item'),
+    url(r'^remove_item/(?P<pk>[0-9]+)/$', login_required(RemoveItem.as_view()),
+        name='remove_item'),
     url(r'^forecast/$', login_required(MyForecast.as_view()), name='forecast'),
 ]

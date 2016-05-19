@@ -24,9 +24,9 @@ class Item(models.Model):
     TYPE_CHOICES = (
         (PANTS, 'Pants'),
         (SHORTS, 'Shorts'),
-        (SKIRT , 'Skirt'),
-        (SHIRT , 'Shirt'),
-        (SWEATER , 'Sweater'),
+        (SKIRT, 'Skirt'),
+        (SHIRT, 'Shirt'),
+        (SWEATER, 'Sweater'),
         (TEE, 'Tee'),
     )
     BLACK = 0
@@ -39,7 +39,7 @@ class Item(models.Model):
         (RED, 'Red'),
         (PINK, 'Pink'),
     )
-    WARM = 0 
+    WARM = 0
     MILD = 1
     COLD = 2
     DIURNAL_VARIATION = 18
@@ -73,8 +73,6 @@ class Item(models.Model):
             frozenset([WHITE, RED, PINK]): 0,
     })
 
-
-
     @classmethod
     def classify_temperature(cls, temp):
         """Map temperature to one of TEMPERATURE_CHOICES intervals."""
@@ -85,10 +83,14 @@ class Item(models.Model):
         else:
             return cls.MILD
 
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
+                              on_delete=models.CASCADE)
     item_type = models.IntegerField(choices=TYPE_CHOICES)
     color = models.IntegerField(choices=COLOR_CHOICES)
-    temperature = models.IntegerField(choices=TEMPERATURE_CHOICES, verbose_name = 'I wear it when it\'s')
+    temperature = models.IntegerField(choices=TEMPERATURE_CHOICES,
+                                      verbose_name='I wear it when it\'s')
 
     def __unicode__(self):
-        return "%s %s for %s weather" % (self.get_color_display(), self.get_item_type_display(), self.get_temperature_display())
+        return "%s %s for %s weather" % (self.get_color_display(),
+                                         self.get_item_type_display(),
+                                         self.get_temperature_display())
