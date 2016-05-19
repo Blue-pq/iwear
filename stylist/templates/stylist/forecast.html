@@ -3,24 +3,47 @@
 {% block content %}
 What to wear today:
 <script>
-    function callbackFunction(data) {
-        $.ajax({
-            method: "POST",
-            data: {
-                low: data.query.results.channel.item.forecast[0].low,
-                high: data.query.results.channel.item.forecast[0].high
+    function callbackFunction(data, retryFunc) {
+        try {
+            var results = data.query.results;
+            if (results) {
+                var temperature = results.channel.item.forecast[0];  // 0 element is today's weather
+                if ((temperature.low != undefined) && (temperature.high != undefined)) {
+                    $.ajax({
+                        method: "POST",
+                        data: {
+                            low: temperature.low,
+                            high: temperature.high
+                        }
+                    }).done(function(data) {
+                        $("#what_to_wear").html(data);
+                    });
+                } else {
+                    retryFunc("Error retrieving weather data!");
+                }
+            } else {
+                retryFunc("Error retrieving weather data!");
             }
-        }).done(function(data) {
-            $("#what_to_wear").html(data);
-        });
+        } catch(e) {
+            retryFunc("Problem communicating with the server. Try again later.");
+        }
     }
+
+    function getForecast() {
+        var YQL = "https://query.yahooapis.com/v1/public/yql";
+        var url = YQL + "?q=select * from weather.forecast where woeid={{ woeid }};&format=json";
+        // Test: url = "/static/test_forecast.js";
+        apiCall(url, callbackFunction)
+    }
+
+    // OnLoad
     $(function() {
-        var query = "select * from weather.forecast where woeid={{ woeid }};";
-        $('head:first').append("<script src=\"https://query.yahooapis.com/v1/public/yql?q=" + query + "&format=json&callback=callbackFunction\"><\/script>");
-    })
+        getForecast();
+    });
 </script>
 
 <div id="what_to_wear">
     Loading...
 </div>
+<a href="https://www.yahoo.com/?ilc=401" target="_blank"><img src="https://poweredby.yahoo.com/purple.png" width="134" height="29"/></a>
 {% endblock content %}

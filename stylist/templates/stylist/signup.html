@@ -6,28 +6,38 @@
     {{ form.as_p }}
     <input type="submit" value="Sign up">
 </form>
+<a href="https://www.yahoo.com/?ilc=401" target="_blank"><img src="https://poweredby.yahoo.com/purple.png" width="134" height="29"/></a>
 <script>
     $("#signup").submit(function(event) {
-        var query = "select woeid from geo.places where text='" + $('#id_zip_code').val() + ",US" + "' and placeTypeName='Zip Code' limit 1";
-        $('head:first').append("<script src=\"https://query.yahooapis.com/v1/public/yql?q=" + query + "&format=json&callback=callbackFunction\"><\/script>");
+        getWoeid($('#id_zip_code').val());
         event.preventDefault();
     });
 </script>
 
 <script>
-    var callbackFunction = function(data) {
-        console.log(data);
+    function getWoeid(zip_code) {
+        var YQL = "https://query.yahooapis.com/v1/public/yql";
+        var url = YQL + "?q=select woeid from geo.places where text='" + zip_code + ",US" + "' and placeTypeName='Zip Code' limit 1;&format=json";
+        // Test: url = "/static/test_signup.js";
+        apiCall(url, callbackFunction)
+    }
+
+    var callbackFunction = function(data, retryFunc) {
         try {
             var results = data.query.results;
             if (results) {
                 var woeid = results.place.woeid;
-                $('#id_woeid').val(woeid);
-                $("#signup").off( "submit" ).submit();
+                if (woeid != undefined) {
+                    $('#id_woeid').val(woeid);
+                    $("#signup").off( "submit" ).submit();
+                } else {
+                    alert("Please correct Zip code and try again.");
+                }
             } else {
                 alert("Please correct Zip code and try again.");
             }
         } catch(e) {
-            alert("Problem communicating with the server. Try again later.");
+            retryFunc("Problem communicating with the server. Try again later.");
         }
     };
 </script>
