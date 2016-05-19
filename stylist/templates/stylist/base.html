@@ -9,6 +9,7 @@
             <script src="{% static "api_calls.js" %}"></script>
             <script src="{% static "scriptcaller.min.js" %}"></script>
             <script>
+                // Setup CSRF token for AJAX requests
                 function csrf_safe_method(method) {
                     // these HTTP methods do not require CSRF protection
                     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -25,6 +26,9 @@
         {% endblock head %}
     </head>
     <body>
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'stylist:my_items' %}">My wardrobe</a> | <a href="{% url 'stylist:forecast' %}">Forecast</a> | <a href="{% url 'stylist:logout' %}">Logout</a>
+        {% endif %}
         {% block content %}
         {% endblock content %}
     </body>

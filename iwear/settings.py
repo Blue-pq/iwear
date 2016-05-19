@@ -125,7 +125,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'my_items'
-LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'stylist:my_items'
+LOGIN_URL = 'stylist:login'
 
 AUTH_USER_MODEL = 'stylist.MyUser'

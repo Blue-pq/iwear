@@ -1,7 +1,7 @@
 {% extends "stylist/base.html" %}
 
 {% block content %}
-Add new item to your wardrobe
+<h2>Add new item to your wardrobe</h2>
 <form action='' method="POST">
     {% csrf_token %}
     {{ form.as_p }}
