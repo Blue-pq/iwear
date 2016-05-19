@@ -1,0 +1,12 @@
+[
+{
+    "model": "stylist.item",
+    "pk": 3,
+    "fields": {
+        "owner": 1,
+        "item_type": 5,
+        "color": 2,
+        "temperature": 0
+    }
+}
+]

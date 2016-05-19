@@ -8,10 +8,10 @@
     <li>
         Bottom: {{ clothes.1 }}
     </li>
-    {% if clothes.2 %}
-    <li>
-        Other: {{ clothes.2 }}
-    </li>
+    {% if sweater_needed %}
+        <li>
+            Other: {% if clothes.2 %}{{ clothes.2 }}{% else %}You should wear sweater today, but you don't have one.{% endif %}
+        </li>
     {% endif %}
 </ul>
 {% else %}

@@ -87,6 +87,8 @@ class MyForecast(TemplateView):
             high = int(self.request.POST["high"])
             context["low"] = low
             context["high"] = high
+            high_classification = Item.classify_temperature(high)
+            context["sweater_needed"] = high - low >= Item.DIURNAL_VARIATION or high_classification == Item.COLD
             context["clothes"] = self.what_to_wear(low, high)
         else:
             context['woeid'] = self.request.user.woeid

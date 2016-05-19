@@ -1,0 +1,142 @@
+[
+{
+    "model": "stylist.item",
+    "pk": 1,
+    "fields": {
+        "owner": 1,
+        "item_type": 0,
+        "color": 2,
+        "temperature": 2
+    }
+},
+{
+    "model": "stylist.item",
+    "pk": 3,
+    "fields": {
+        "owner": 1,
+        "item_type": 2,
+        "color": 2,
+        "temperature": 0
+    }
+},
+{
+    "model": "stylist.item",
+    "pk": 4,
+    "fields": {
+        "owner": 1,
+        "item_type": 1,
+        "color": 3,
+        "temperature": 0
+    }
+},
+{
+    "model": "stylist.item",
+    "pk": 5,
+    "fields": {
+        "owner": 1,
+        "item_type": 1,
+        "color": 1,
+        "temperature": 2
+    }
+},
+{
+    "model": "stylist.item",
+    "pk": 6,
+    "fields": {
+        "owner": 1,
+        "item_type": 4,
+        "color": 0,
+        "temperature": 0
+    }
+},
+{
+    "model": "stylist.item",
+    "pk": 7,
+    "fields": {
+        "owner": 1,
+        "item_type": 4,
+        "color": 1,
+        "temperature": 1
+    }
+},
+{
+    "model": "stylist.item",
+    "pk": 8,
+    "fields": {
+        "owner": 1,
+        "item_type": 4,
+        "color": 2,
+        "temperature": 2
+    }
+},
+{
+    "model": "stylist.item",
+    "pk": 9,
+    "fields": {
+        "owner": 1,
+        "item_type": 3,
+        "color": 0,
+        "temperature": 1
+    }
+},
+{
+    "model": "stylist.item",
+    "pk": 11,
+    "fields": {
+        "owner": 1,
+        "item_type": 3,
+        "color": 1,
+        "temperature": 2
+    }
+},
+{
+    "model": "stylist.item",
+    "pk": 14,
+    "fields": {
+        "owner": 1,
+        "item_type": 0,
+        "color": 3,
+        "temperature": 0
+    }
+},
+{
+    "model": "stylist.item",
+    "pk": 17,
+    "fields": {
+        "owner": 1,
+        "item_type": 3,
+        "color": 0,
+        "temperature": 2
+    }
+},
+{
+    "model": "stylist.item",
+    "pk": 18,
+    "fields": {
+        "owner": 1,
+        "item_type": 3,
+        "color": 3,
+        "temperature": 1
+    }
+},
+{
+    "model": "stylist.item",
+    "pk": 19,
+    "fields": {
+        "owner": 1,
+        "item_type": 5,
+        "color": 1,
+        "temperature": 1
+    }
+},
+{
+    "model": "stylist.item",
+    "pk": 20,
+    "fields": {
+        "owner": 1,
+        "item_type": 4,
+        "color": 3,
+        "temperature": 2
+    }
+}
+]
