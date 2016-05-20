@@ -6,3 +6,6 @@ db.sqlite3
 
 # Swap files
 *.swp
+
+# Mac OS files
+.DS_Store

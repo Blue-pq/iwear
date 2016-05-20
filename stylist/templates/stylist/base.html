@@ -8,6 +8,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
             <script src="{% static "api_calls.js" %}"></script>
             <script src="{% static "scriptcaller.min.js" %}"></script>
+            <link rel="stylesheet" href="{% static "zurb/css/foundation.min.css" %}">
             <script>
                 // Setup CSRF token for AJAX requests
                 function csrf_safe_method(method) {
@@ -26,11 +27,26 @@
         {% endblock head %}
     </head>
     <body>
-        {% if request.user.is_authenticated %}
-        <a href="{% url 'stylist:my_items' %}">My wardrobe</a> | <a href="{% url 'stylist:forecast' %}">Forecast</a> | <a href="{% url 'stylist:logout' %}">Logout</a>
-        {% endif %}
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <ul class="menu">
+                    <li class="menu-text">iWear</li>
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'stylist:my_items' %}">My wardrobe</a></li>
+                        <li><a href="{% url 'stylist:forecast' %}">Forecast</a></li>
+                        <li><a href="{% url 'stylist:logout' %}">Logout</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <br>
         {% block content %}
         {% endblock content %}
+        <footer>
+            <ul class="menu align-right">
+                <li class="menu-text"><a href="https://www.yahoo.com/?ilc=401" target="_blank"><img src="https://poweredby.yahoo.com/purple.png" width="134" height="29"/></a></li>
+            </ul>
+        </footer>
     </body>
 </html>
 

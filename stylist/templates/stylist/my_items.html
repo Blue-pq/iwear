@@ -1,15 +1,17 @@
 {% extends "stylist/base.html" %}
 
 {% block content %}
-<h2>My wardrobe</h2>
-<ul>
-    {% for item in object_list %}
-    <li>{{ item }} - {{ item.description }}
-        [<a href="{% url 'stylist:remove_item' item.pk %}">Remove</a>]
-    </li>
-    {% empty %}
-        You have no clothes added yet.
-    {% endfor %}
-</ul>
-<a href="{% url 'stylist:add_item' %}">Add item</a>
+<div class="row medium-8 large-4 columns">
+    <h3>My wardrobe</h3>
+    <ul>
+        {% for item in object_list %}
+        <li>{{ item }} - {{ item.description }}
+            [<a href="{% url 'stylist:remove_item' item.pk %}">Remove</a>]
+        </li>
+        {% empty %}
+            You have no clothes added yet.
+        {% endfor %}
+    </ul>
+    <a href="{% url 'stylist:add_item' %}">Add item</a>
+</div>
 {% endblock content %}
